@@ -1,0 +1,193 @@
+﻿@model ML.Usuario
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Usuario</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Ingrese los datos del usuario:</h5>
+        </div>
+    </div>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Form", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.IdUsuario, new { @class = "hidden" })
+                        @Html.TextBoxFor(model => model.IdUsuario, new { @class = "hidden form-control" })
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.Nombre)
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            </span>
+                            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Nombre)
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.ApellidoPaterno)
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            </span>
+                            @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ApellidoPaterno)
+                    </div>
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.ApellidoMaterno)
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            </span>
+                            @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ApellidoMaterno)
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.CURP)
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">
+                                <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+                            </span>
+                            @Html.TextBoxFor(model => model.CURP, new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.CURP)
+                    </div>
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.FechaNacimiento)
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">
+                                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                            </span>
+                            @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.FechaNacimiento)
+                    </div>
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.Sexo)
+                        <div class="input-group">
+                            @*<span class="input-group-addon" id="basic-addon1">
+                                    <span class="" aria-hidden="true"></span>
+                                </span>*@
+                            @Html.TextBoxFor(model => model.Sexo, new { @class = "form-control" })
+                            @*@Html.RadioButtonFor(model => model.Usuario.Sexo, new { })*@
+                            @*@Html.Label("Hombre")
+                                @Html.RadioButtonFor(model => model.Usuario.Sexo, "Masculino", new { value = "M" })
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                @Html.Label("Mujer")
+                                @Html.RadioButtonFor(model => model.Usuario.Sexo, "Femenino", new { value = "F" })*@
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Sexo)
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.Email)
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">
+                                <span class="" aria-hidden="true">@@</span>
+                            </span>
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @id = "txtEmail", @onblur = "return ValidarEmail()", @autcomplete = "off" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                    
+                    
+
+                    <div class="col-md-4">
+                        @Html.LabelFor(model => model.UserName)
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                            </span>
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.UserName)
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Telefono)
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">
+                                <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+                            </span>
+                            @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Telefono)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Celular)
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">
+                                <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+                            </span>
+                            @Html.TextBoxFor(model => model.Celular, new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Celular)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Estatus)
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            </span>
+                            @Html.TextBoxFor(model => model.Estatus, new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Estatus)
+                    </div>
+                </div>
+
+                <br />
+
+               
+
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-1">
+                        <input type="submit" value="Guardar" class="btn btn-success" />
+                    </div>
+                    <div class="col-md-1">
+                        @Html.ActionLink("Regresar", "GetAll", "Usuario", htmlAttributes: new { @class = "btn btn-danger" })
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+</div>
+
